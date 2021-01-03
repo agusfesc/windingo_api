@@ -14,15 +14,18 @@ def respond():
   for server in servidores:
     ip = server.split(":", 1)
     address = (ip[0], int(ip[1]))
-    info = a2s.info(address)
-    serverinfo = {
-      "ip": server,
-      "name": info.server_name,
-      "map": info.map_name,
-      "max_players": info.max_players,
-      "player_count": info.player_count,
-    }
-    informacion.append(serverinfo)
+    try:
+      info = a2s.info(address)
+      serverinfo = {
+        "ip": server,
+        "name": info.server_name,
+        "map": info.map_name,
+        "max_players": info.max_players,
+        "player_count": info.player_count,
+      }
+      informacion.append(serverinfo)
+    except:
+      pass
   return jsonify(informacion)
   
 
