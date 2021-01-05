@@ -2,7 +2,7 @@ import a2s
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
-servidores = [
+servers = [
 		'45.235.99.158:27019', '45.235.99.158:27018', '45.235.99.158:27020', '45.235.99.158:27021', 
 		'45.235.99.158:27022', '45.235.99.158:27024', '45.235.99.158:27025', '45.235.99.158:27026', 
 		'45.235.99.158:27015', '45.235.99.158:27023', '45.235.99.158:27016', '45.235.99.158:27017',  
@@ -11,7 +11,7 @@ servidores = [
 @app.route('/', methods=['GET'])
 def respond():
   informacion = []
-  for server in servidores:
+  for server in servers:
     ip = server.split(":", 1)
     address = (ip[0], int(ip[1]))
     try:
@@ -30,5 +30,4 @@ def respond():
   
 
 if __name__ == '__main__':
-    # Threaded option to enable multiple instances for multiple user access support
     app.run(threaded=True, port=5000, debug=True)
